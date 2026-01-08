@@ -1,0 +1,206 @@
+/* Shared styles for ManagerView and VolunteerView */
+:root{
+  --bg:#f6f8fb;
+  --card:#ffffff;
+  --muted:#6b7280;
+  --accent:#2563eb;
+  --danger:#ef4444;
+  --success:#10b981;
+  --glass: rgba(255,255,255,0.7);
+}
+
+.views-container{
+  max-width:1100px;
+  margin:24px auto;
+  padding:16px;
+  background: linear-gradient(180deg, var(--bg), #fff 60%);
+  border-radius:10px;
+  box-shadow:0 6px 18px rgba(16,24,40,0.06);
+}
+
+.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:16px;
+}
+
+.header h1{
+  margin:0;
+  font-size:1.4rem;
+  color:#111827;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+  gap:16px;
+}
+
+.card{
+  background:var(--card);
+  border-radius:10px;
+  padding:14px;
+  box-shadow:0 3px 8px rgba(15,23,42,0.04);
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  min-height:90px;
+}
+
+.card .title{
+  font-weight:600;
+  color:#111827;
+  font-size:1rem;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 10px;
+  border-radius:9999px;
+  font-weight:600;
+  font-size:0.85rem;
+}
+
+.badge.free{background:rgba(16,185,129,0.12); color:var(--success);}
+.badge.occupied{background:rgba(239,68,68,0.08); color:var(--danger);}
+
+.actions{
+  margin-top:auto;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  align-items:center;
+  max-width:100%;
+}
+
+/* Ensure buttons don't overflow their container and wrap nicely */
+.actions .btn{
+  flex: 0 1 auto;
+  white-space:nowrap;
+  padding:8px 10px;
+  min-width:0; /* allow shrinking */
+}
+
+.btn{
+  appearance:none;
+  border:0;
+  background:var(--accent);
+  color:white;
+  padding:8px 12px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:600;
+  /* keep buttons visually compact on desktop */
+  line-height:1;
+}
+
+.btn.ghost{
+  background:transparent;
+  color:var(--accent);
+  border:1px solid rgba(37,99,235,0.12);
+}
+
+.btn:disabled{
+  opacity:0.45;
+  cursor:not-allowed;
+}
+
+.small{
+  font-size:0.85rem;
+  color:var(--muted);
+  overflow-wrap:anywhere;
+  word-break:break-word;
+}
+
+.loading{
+  text-align:center;
+  color:var(--muted);
+  padding:20px 0;
+}
+
+/* Timer / inline text inside cards */
+.card h3{ /* time up */
+  color:var(--danger);
+  margin:0;
+  font-size:1rem;
+}
+.card p{
+  margin:0;
+  color:#374151;
+}
+
+/* Group / lab badges & layout */
+.group-card .group-header{ display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.group-card .group-meta{ margin-top:8px; }
+.lab-list{ display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
+.lab-badge{ background: rgba(37,99,235,0.08); color:var(--accent); padding:6px 8px; border-radius:8px; font-weight:600; font-size:0.85rem; display:inline-flex; align-items:center; gap:8px; }
+.lab-badge.entered{ background: rgba(16,185,129,0.12); color:var(--success); border:1px solid rgba(16,185,129,0.16); box-shadow:0 1px 0 rgba(16,185,129,0.04); }
+.lab-badge .entered-dot{ width:8px; height:8px; background:var(--success); border-radius:50%; display:inline-block; }
+.lab-badge .entered-text{ font-size:0.75rem; color:var(--success); font-weight:700; margin-left:4px; }
+
+.group-actions{ margin-top:12px; display:flex; gap:8px; align-items:center; justify-content:flex-end; flex-wrap:wrap; }
+.group-actions .select{ padding:8px 10px; border-radius:8px; border:1px solid rgba(15,23,42,0.06); }
+
+/* Checkbox list for multi-assign/unassign */
+.lab-checkbox-list{ display:flex; flex-direction:column; gap:8px; max-height:220px; overflow:auto; padding:6px 4px; border:1px solid rgba(15,23,42,0.04); border-radius:8px; }
+.lab-checkbox{ display:flex; align-items:center; gap:10px; padding:6px 8px; border-radius:6px; cursor:pointer; }
+.lab-checkbox input{ width:16px; height:16px; }
+.lab-checkbox .lab-info{ display:flex; flex-direction:column; }
+.lab-checkbox .lab-name{ font-weight:600; color:#0b3a8a; }
+.lab-checkbox .lab-meta{ font-size:0.8rem; color:var(--muted); }
+
+@media (max-width:768px){
+  .lab-checkbox-list{ max-height:200px; }
+}
+
+/* Tablet and small-desktop */
+@media (max-width:768px){
+  .views-container{ padding:14px; margin:16px; }
+  .grid{ grid-template-columns: 1fr; gap:12px; }
+  .header{ flex-direction:column; align-items:flex-start; gap:8px; }
+
+  .actions{ flex-direction:column; align-items:stretch; }
+  .btn{ width:100%; padding:12px; border-radius:10px; }
+  .btn.ghost{ width:100%; }
+
+  .badge{ font-size:0.9rem; padding:8px 12px; }
+  .card{ padding:12px; }
+}
+
+/* Small phones */
+@media (max-width:420px){
+  .views-container{ padding:10px; margin:10px; border-radius:8px; }
+  .header h1{ font-size:1rem }
+  .card .title{ font-size:0.95rem; }
+  .small{ font-size:0.8rem; }
+  .badge{ font-size:0.8rem; padding:6px 10px; }
+  .btn{ font-size:0.95rem; padding:12px; }
+  .grid{ gap:10px; }
+  .card{ min-height:88px; }
+
+  /* landing tweaks */
+  form input.btn{ text-align:left; }
+}
+
+/* Lab Directory */
+.lab-directory{ margin-top:20px; padding:12px; background:var(--glass); border-radius:8px; }
+.lab-directory h3{ margin:0 0 8px 0; }
+.lab-directory-wrapper{ overflow-x:auto; }
+.lab-directory-table{ width:100%; border-collapse:collapse; min-width:700px; }
+.lab-directory-table th{ text-align:left; padding:8px 10px; background:#154e43; color:#fff; position:sticky; top:0; }
+.lab-directory-table td{ padding:10px; border-bottom:1px solid rgba(15,23,42,0.04); color:#111827; }
+.lab-directory-table tr:nth-child(even){ background:rgba(0,0,0,0.02); }
+.lab-directory-table td:last-child, .lab-directory-table th:last-child{ text-align:right; }
+
+@media (max-width:768px){
+  .lab-directory-table{ min-width:600px; }
+}
+
+@media (max-width:420px){
+  .lab-directory-table{ min-width:520px; }
+}
+
